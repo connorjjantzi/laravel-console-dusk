@@ -14,10 +14,10 @@
         }
     ],
     "repositories": [
-      {
-        "type": "vcs",
-        "url": "https://github.com/connorjjantzi/dusk"
-      }
+        {
+            "type": "vcs",
+            "url": "https://github.com/connorjjantzi/dusk"
+        }
     ],
     "require": {
         "php": "^8.2",
