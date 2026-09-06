@@ -10,12 +10,12 @@ use Phar;
  */
 class ChromeProcess extends BaseChromeProcess
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function toProcess(array $arguments = [])
     {
         $chromeDriverPath = config('laravel-console-dusk.chrome_driver_path');
 
-        if (!$this->driver && isset($chromeDriverPath)) {
+        if (! $this->driver && isset($chromeDriverPath)) {
             if ($chromeDriverPath === 'auto') {
                 // Set the driver directory to the phar's directory
                 // Or else, don't do anything
@@ -37,6 +37,10 @@ class ChromeProcess extends BaseChromeProcess
 
                 $this->driver = $chromeDriverPath.DIRECTORY_SEPARATOR.$filenames[$this->operatingSystemId()];
             }
+        }
+
+        if ($systemDriver = exec('which chromedriver')) {
+            $this->driver = $systemDriver;
         }
 
         return parent::toProcess($arguments);
